@@ -248,9 +248,9 @@ if __name__ == "__main__":
     
     # Process all available dumps
     try:
-        # process_works()
-        # process_editions()
-        # process_authors()
+        process_works()
+        process_editions()
+        process_authors()
         process_ratings()
         process_reading_log()
         print("\nAll conversions complete! Data available in data/processed/")
