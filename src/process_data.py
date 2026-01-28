@@ -16,7 +16,7 @@ PROCESSED_DIR.mkdir(exist_ok=True, parents=True)
 
 def process_works():
     """
-    Process Works Dump: Extracts Title and Subjects.
+    Process Works Dump: Extracts Title, Subjects, and Author reference.
     Input: TSV | Columns: type, key, rev, last_mod, json
     """
     print("Processing Works dump...")
@@ -39,12 +39,22 @@ def process_works():
         )
         .select([
             pl.col("key").alias("work_key"),
-            # Extract basic fields from JSON using the defined schema
+            # Keep raw blob and decoded struct
+            pl.col("json_blob"),
             pl.col("json_blob").str.json_decode(WORK_SCHEMA).alias("json"),
         ])
         .select([
             pl.col("work_key"),
             pl.col("json").struct.field("title"),
+            # Extract first author key (works can have multiple authors).
+            # The dump isn't fully consistent: some records store authors like:
+            # - {"authors":[{"author":{"key":"/authors/OL..A"}, ...}, ...]}
+            # - {"authors":["/authors/OL..A", ...]}
+            # So we extract from raw JSON with a fallback.
+            pl.coalesce([
+                pl.col("json_blob").str.json_path_match("$.authors[0].author.key"),
+                pl.col("json_blob").str.json_path_match("$.authors[0]"),
+            ]).alias("author_key"),
             # Extract top 5 subjects as a list (for genre analysis)
             pl.col("json").struct.field("subjects").list.slice(0, 5).fill_null([]),
         ])
@@ -249,10 +259,10 @@ if __name__ == "__main__":
     # Process all available dumps
     try:
         process_works()
-        process_editions()
-        process_authors()
-        process_ratings()
-        process_reading_log()
+        # process_editions()
+        # process_authors()
+        # process_ratings()
+        # process_reading_log()
         print("\nAll conversions complete! Data available in data/processed/")
     except Exception as e:
         print(f"\nAn error occurred: {e}")
