@@ -11,6 +11,7 @@ This table feeds the **long tail of popularity** analysis. Each row is one work 
 | Column | Description |
 |--------|-------------|
 | work_key | Unique work identifier (e.g. /works/OL123W) |
+| title | Work title from works_cleaned (null if not in works) |
 | count_of_ratings | Number of ratings for this work |
 | bayesian_rating | Bayesian average rating (prior-pulled when few ratings) |
 | average_rating | Simple average rating |
@@ -31,7 +32,7 @@ This table feeds the **long tail of popularity** analysis. Each row is one work 
 Values are stored with 10 decimal places for fine rank comparison.
 
 ## Summary statistics
-- popularity_score — min: 0.0063914575, max: 2.2128124435, mean: 0.1126728616
+- popularity_score — min: 0.0063914575, max: 2.9127945851, mean: 0.1216964416
 - overall_rank — 1 to 1,383,682
 - count_of_ratings — max: 1,275
 - already_read — max: 1,527
