@@ -17,16 +17,21 @@ This table feeds the **long tail of popularity** analysis. Each row is one work 
 | want_to_read | Count of "want to read" in reading log |
 | already_read | Count of "already read" in reading log |
 | currently_reading | Count of "currently reading" in reading log |
+| norm_log_bayesian_rating | Norm(log(1 + bayesian_rating)) in [0, 1] |
+| norm_log_already_read | Norm(log(1 + already_read)) in [0, 1] |
+| norm_log_want_to_read | Norm(log(1 + want_to_read)) in [0, 1] |
+| norm_log_currently_reading | Norm(log(1 + currently_reading)) in [0, 1] |
 | popularity_score | Combined score (see formula) |
 | overall_rank | Rank by popularity_score (1 = highest) |
 
 ## Popularity score formula
-**popularity_score** = 1 × (bayesian_rating) + 0.8 × (already_read) + 0.4 × (currently_reading) + 0.1 × (want_to_read)
+1. Log-scale: log(1 + value) per metric. 2. Normalize to 0–1: Norm(x) = (x − min) / (max − min) per metric.  
+**popularity_score** = 1 × Norm(log(bayesian_rating)) + 0.8 × Norm(log(already_read)) + 0.4 × Norm(log(currently_reading)) + 0.1 × Norm(log(want_to_read))
 
 Values are stored with 10 decimal places for fine rank comparison.
 
 ## Summary statistics
-- popularity_score — min: 0.1000000000, max: 8086.2852073843, mean: 1.0779844402
+- popularity_score — min: 0.0063914575, max: 2.2128124435, mean: 0.1126728616
 - overall_rank — 1 to 1,383,682
 - count_of_ratings — max: 1,275
 - already_read — max: 1,527
