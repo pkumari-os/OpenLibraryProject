@@ -22,7 +22,8 @@ This table feeds the **long tail of popularity** analysis. Each row is one work 
 | norm_log_already_read | Norm(log(1 + already_read)) in [0, 1] |
 | norm_log_want_to_read | Norm(log(1 + want_to_read)) in [0, 1] |
 | norm_log_currently_reading | Norm(log(1 + currently_reading)) in [0, 1] |
-| popularity_score | Combined score (see formula) |
+| popularity_score | Combined weighted score (raw, for analysis) |
+| popularity_score_normalized | Popularity score normalized to [0, 1] (for visualization) |
 | overall_rank | Rank by popularity_score (1 = highest) |
 
 ## Popularity score formula
