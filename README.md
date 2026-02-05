@@ -6,7 +6,7 @@ Analysis of book popularity distribution and rediscovery over time using Open Li
 
 ## Final Report
 
-**Open the final report in your browser:** [blog_the_long_tail_of_literature_punamkumari.html](blog_the_long_tail_of_literature_punamkumari.html)
+**Open the final report in your browser:** [[blog_the_long_tail_of_literature_punamkumari.html](https://pkumari-os.github.io/OpenLibraryProject/blog_the_long_tail_of_literature_punamkumari.html)](blog_the_long_tail_of_literature_punamkumari.html)
 
 This HTML file contains the full story: executive summary, findings (long tail, inequality, age trends, temporal heatmap, sleeping beauties), recommendations, and next experiments. No server needed—just open the file in a browser.
 
