@@ -20,7 +20,7 @@ The **`data/`** folder is **not pushed** to the repo. Raw Open Library dumps are
 
 1. Download the dumps from **[Open Library Data Dumps](https://openlibrary.org/developers/dumps)** (or [Bulk Data](https://openlibrary.org/data)).
 2. Place the required `.txt` dump files inside **`data/raw/`** in the repo root.
-3. Run **`process_data.py`** (see [Flow](#flow) below). It will read from `data/raw/` and create **`data/processed/`** with Parquet files.
+3. Run **`process_data.py`** (see Flow below). It will read from `data/raw/` and create **`data/processed/`** with Parquet files.
 
 Required dump filenames (adjust dates to match the latest dump you download):  
 `ol_dump_works_*.txt`, `ol_dump_editions_*.txt`, `ol_dump_authors_*.txt`, `ol_dump_ratings_*.txt`, `ol_dump_reading-log_*.txt`.  
